@@ -31,9 +31,9 @@ To install the dependencies you can use the following command:
 ```bash 
 $ python -m pip install -r requirements.txt 
 ```
-Or you can install the dependencies separately from the [`requirements.txt`](https://github.com/anthonyprime202/ecoX_Bot/requirements.txt) file
+Or you can install the dependencies separately from the [`requirements.txt`](https://github.com/anthonyprime202/ecoX_Bot/blob/main/requirements.txt) file
 
 ## How To Contribute 
 
 ## Lisence
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/anthonyprime202/ecoX_Bot/blob/main/LISENCE)
