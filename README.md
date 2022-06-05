@@ -36,4 +36,4 @@ Or you can install the dependencies separately from the [`requirements.txt`](htt
 ## How To Contribute 
 
 ## Lisence
-[MIT](https://github.com/anthonyprime202/ecoX_Bot/blob/main/LISENCE)
+[MIT](https://github.com/anthonyprime202/ecoX_Bot/blob/main/LICENSE)
