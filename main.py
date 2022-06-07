@@ -1,4 +1,4 @@
-from .src import Bot
+from src import Bot
 
 bot = Bot()
 
