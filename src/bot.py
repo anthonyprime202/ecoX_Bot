@@ -4,6 +4,7 @@ import asyncpg
 import discord
 
 from datetime import datetime
+import os
 
 
 INTENTS = discord.Intents.default()
@@ -12,9 +13,9 @@ INTENTS.members = True
 
 
 class Bot(commands.Bot):
-    def __init__(self) -> None:
+    def __init__(self):
         super().__init__(
-            command_prefix=self.get_prefix,
+            command_prefix=commands.when_mentioned,
             intents=INTENTS,
             status=discord.Status.idle,
             activity=discord.Activity(
@@ -22,19 +23,27 @@ class Bot(commands.Bot):
                 name="Spy×Family",
             ),
         )
-        self.__token = dotenv_values().get("BOT_TOKEN")
-        self.__dsn = dotenv_values().get("PG_DSN")
+    
+    @property
+    def __token(self) -> str:
+        return dotenv_values().get("BOT_TOKEN")
+    
+    @property
+    def __dsn(self) -> str:
+        return dotenv_values().get("PG_DSN")
 
     @property 
     def curr_time(self) -> str:
         return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    @property 
-    async def db(self) -> asyncpg.Pool:
-        return asyncpg.create_pool(dsn=self.__dsn)
-
-    async def run(self) -> None:
+    def run(self) -> None:
         super().run(self.__token)
 
     async def on_ready(self) -> None:
         print(f"Logged in as {self.user}(ID: {self.user.id}) at {self.curr_time}")
+    
+    async def setup_hook(self) -> None:
+        self.db = await asyncpg.create_pool(dsn=self.__dsn)
+        for extension in os.listdir("src/extensions"):
+            if extension.endswith(".py"):
+                await self.load_extension(f"src.extensions.{extension[:-3]}")

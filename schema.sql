@@ -1,6 +1,12 @@
 CREATE TABLE IF NOT EXISTS guilds (
-    id BIGINT PRIMARY KEY,
-    prefix TEXT[]
+    id BIGINT PRIMARY KEY,  
+    admin BIGINT
 );
 
+CREATE TABLE IF NOT EXISTS economy (
+    member BIGINT PRIMARY KEY,
+    guild BIGINT NOT NULL,
+    balance INTEGER DEFAULT 0,
+    roles BIGINT[]
+);
 
