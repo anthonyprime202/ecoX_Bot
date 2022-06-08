@@ -10,14 +10,6 @@ INTENTS = discord.Intents.default()
 INTENTS.message_content = True
 INTENTS.members = True
 
-CREDENTIALS = {
-    "user": dotenv_values().get("PG_USERNAME"),
-    "password": dotenv_values().get("PG_PASSWORD"),
-    "host": dotenv_values().get("PG_HOST"),
-    "port": int(dotenv_values().get("PG_PORT")),
-    "database": dotenv_values().get("PG_DBNAME"),
-}
-
 
 class Bot(commands.Bot):
     def __init__(self) -> None:
@@ -30,19 +22,19 @@ class Bot(commands.Bot):
                 name="Spy×Family",
             ),
         )
-    
-    @property 
-    def token(self):
-        return dotenv_values().get("BOT_TOKEN")
-    
-    
-    @property 
-    async def db(self) -> asyncpg.Pool:
-        return asyncpg.create_pool(**CREDENTIALS)
+        self.__token = dotenv_values().get("BOT_TOKEN")
+        self.__dsn = dotenv_values().get("PG_DSN")
 
     @property 
-    def curr_time(self):
-        return(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    def curr_time(self) -> str:
+        return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+    @property 
+    async def db(self) -> asyncpg.Pool:
+        return asyncpg.create_pool(dsn=self.__dsn)
+
+    async def run(self) -> None:
+        super().run(self.__token)
 
     async def on_ready(self) -> None:
         print(f"Logged in as {self.user}(ID: {self.user.id}) at {self.curr_time}")
