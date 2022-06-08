@@ -1,19 +1,20 @@
 from discord.ext import commands
 from dotenv import dotenv_values
+import asyncpg
 
 from datetime import datetime
 
 
-intents = discord.Intents.default()
-intents.message_content = True
-intents.members = True
+INTENTS = discord.Intents.default()
+INTENTS.message_content = True
+INTENTS.members = True
 
 
 class Bot(commands.Bot):
     def __init__(self):
         super().__init__(
             command_prefix=self.get_prefix,
-            intents=intents,
+            intents=INTENTS,
             status=discord.Status.idle,
             activity=discord.Activity(
                 type=discord.ActivityType.watching,
