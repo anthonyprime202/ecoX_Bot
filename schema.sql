@@ -10,3 +10,8 @@ CREATE TABLE IF NOT EXISTS economy (
     roles BIGINT[]
 );
 
+CREATE TABLE IF NOT EXISTS shops (
+    role BIGINT PRIMARY KEY,
+    guild BIGINT NOT NULL,
+    price INTEGER NOT NULL
+);

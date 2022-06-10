@@ -45,5 +45,5 @@ class Bot(commands.Bot):
     async def setup_hook(self) -> None:
         self.db = await asyncpg.create_pool(dsn=self.__dsn)
         for extension in os.listdir("src/extensions"):
-            if extension.endswith(".py"):
+            if extension.endswith(".py") and extension != "config.py":
                 await self.load_extension(f"src.extensions.{extension[:-3]}")

@@ -24,5 +24,7 @@ class ServerLogs(commands.Cog):
                 await conn.execute(
                     "DELETE FROM guilds WHERE id = $1; DELETE FROM economy WHERE guild = $1;", guild.id
                 )
-                
+   
 
+async def setup(bot):
+    await bot.add_cog(ServerLogs(bot))
