@@ -31,7 +31,11 @@ class Bot(commands.Bot):
     @property
     def __dsn(self) -> str:
         return dotenv_values().get("PG_DSN")
-
+    
+    @property
+    def color(self) -> hex:
+        return 0x9ce1f2
+    
     @property 
     def curr_time(self) -> str:
         return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
