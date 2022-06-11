@@ -1,5 +1,7 @@
-shop = {
-    "name": "shop"
+shop_config = {
+    "shop": {
+        "name": "shop"
+    }
 }
 
 tsync = {

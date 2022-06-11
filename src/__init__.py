@@ -1,3 +1,3 @@
-from .core.bot import *
-from .core.cog import *
-from .core.embed import *
+from .bot import *
+from .cog import *
+from .embed import *

@@ -1,6 +1,10 @@
-- [] dev tools
+- [*] dev tools/jishaku
+- [*] database management on join
 - [] shop
     - [] pagination
+        - [] sort items into lists
+        - [] Embed class
+        - [] create view
     - [] items add & remove
     - [] buy command
 - [] giveaway
@@ -9,4 +13,3 @@
     - [] amount add & remove
     - [] economy reset
 - [] setup function
-- [] help command
